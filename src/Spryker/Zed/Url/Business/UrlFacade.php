@@ -41,7 +41,7 @@ class UrlFacade extends AbstractFacade implements UrlFacadeInterface
         }
 
         return $this->getFactory()
-            ->createUrlCreator()
+            ->createUrlProcessor()
             ->createUrl($urlTransfer);
     }
 
@@ -189,7 +189,7 @@ class UrlFacade extends AbstractFacade implements UrlFacadeInterface
     public function updateUrl(UrlTransfer $urlTransfer)
     {
         return $this->getFactory()
-            ->createUrlUpdater()
+            ->createUrlProcessor()
             ->updateUrl($urlTransfer);
     }
 
@@ -253,8 +253,8 @@ class UrlFacade extends AbstractFacade implements UrlFacadeInterface
     public function createUrlRedirect(UrlRedirectTransfer $urlRedirectTransfer)
     {
         return $this->getFactory()
-            ->createUrlRedirectCreator()
-            ->createUrlRedirect($urlRedirectTransfer);
+            ->createRedirectProcessor()
+            ->createRedirect($urlRedirectTransfer);
     }
 
     /**
@@ -301,8 +301,8 @@ class UrlFacade extends AbstractFacade implements UrlFacadeInterface
     public function updateUrlRedirect(UrlRedirectTransfer $urlRedirectTransfer)
     {
         return $this->getFactory()
-            ->createUrlRedirectUpdater()
-            ->updateUrlRedirect($urlRedirectTransfer);
+            ->createRedirectProcessor()
+            ->updateRedirect($urlRedirectTransfer);
     }
 
     /**

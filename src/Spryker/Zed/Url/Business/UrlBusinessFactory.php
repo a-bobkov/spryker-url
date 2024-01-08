@@ -11,6 +11,12 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Spryker\Zed\Url\Business\Deletion\AbstractUrlDeleterSubject;
 use Spryker\Zed\Url\Business\Deletion\Observer\UrlDeletePluginObserver;
 use Spryker\Zed\Url\Business\Deletion\UrlDeleter;
+use Spryker\Zed\Url\Business\Processor\RedirectProcessor;
+use Spryker\Zed\Url\Business\Processor\RedirectProcessorInterface;
+use Spryker\Zed\Url\Business\Processor\UrlProcessor;
+use Spryker\Zed\Url\Business\Processor\UrlProcessorInterface;
+use Spryker\Zed\Url\Business\Processor\UrlRedirectProcessor;
+use Spryker\Zed\Url\Business\Processor\UrlRedirectProcessorInterface;
 use Spryker\Zed\Url\Business\Redirect\Observer\UrlRedirectAppendObserver;
 use Spryker\Zed\Url\Business\Redirect\Observer\UrlRedirectInjectionObserver;
 use Spryker\Zed\Url\Business\Redirect\Observer\UrlRedirectOverwriteObserver;
@@ -38,6 +44,41 @@ use Spryker\Zed\Url\UrlDependencyProvider;
  */
 class UrlBusinessFactory extends AbstractBusinessFactory
 {
+    /**
+     * @return \Spryker\Zed\Url\Business\Processor\RedirectProcessorInterface
+     */
+    public function createRedirectProcessor(): RedirectProcessorInterface
+    {
+        return new RedirectProcessor(
+            $this->createUrlProcessor(),
+            $this->createUrlRedirectProcessor(),
+        );
+    }
+
+    /**
+     * @return \Spryker\Zed\Url\Business\Processor\UrlProcessorInterface
+     */
+    public function createUrlProcessor(): UrlProcessorInterface
+    {
+        return new UrlProcessor(
+            $this->getQueryContainer(),
+            $this->createUrlReader(),
+            $this->createUrlActivator(),
+            $this->createUrlRedirectProcessor(),
+        );
+    }
+
+    /**
+     * @return \Spryker\Zed\Url\Business\Processor\UrlRedirectProcessorInterface
+     */
+    public function createUrlRedirectProcessor(): UrlRedirectProcessorInterface
+    {
+        return new UrlRedirectProcessor(
+            $this->getQueryContainer(),
+            $this->createUrlRedirectActivator(),
+        );
+    }
+
     /**
      * @return \Spryker\Zed\Url\Business\Url\UrlCreatorInterface
      */
