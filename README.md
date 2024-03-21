@@ -3,7 +3,7 @@
 The article discovers a serious problem in the standard implementation of URLs in Spryker Commerce OS and how it can be solved.  
 A reproducible step-by-step demonstration of the problem on the base of Spryker official demo-shop is provided.  
 A detailed analysis of the problem is presented.  
-A fully-functional reusable solution of the problem is demonstrated.  
+A fully-functional reusable open-source solution of the problem is demonstrated.  
 Possible future steps are considered.  
 
 Andrey Bobkov, 2024,   🗃️️ [https://github.com/a-bobkov](https://github.com/a-bobkov),   🔗 [https://www.linkedin.com/in/andreybobkov/](https://www.linkedin.com/in/andreybobkov/)
@@ -16,8 +16,8 @@ Andrey Bobkov, 2024,   🗃️️ [https://github.com/a-bobkov](https://github
 🔍 [Problem analysis](#-problem-analysis)  
 📐 [Solution design](#-solution-design)  
 🚀 [Solution test launch](#-solution-test-launch)  
-🛠️ [Possible future steps](#-possible-future-steps)  
-🍻 [Feedback](#-feedback)  
+🔧️ [Possible future steps](#-possible-future-steps)  
+🍻 [Feedback options](#-feedback-options)  
 📒 [Other investigations](#-other-investigations)  
 
 ## 🛳  Spryker Commerce OS data flow
@@ -309,7 +309,7 @@ The root cause of the demonstrated behaviour is logic, how the url-module works 
 
 The most solid approach I see here, is to avoid renaming field `url` of the records in the `spy_url` table. Instead of renaming URL we could change the attributes of the record, converting it to a redirect and back to a regular URL, when needed. This approach solves the above demonstrated problem forever, because it makes the publish-events independent, so such collisions can not happen at all.
 
-I have implemented the solution as a fork repository [https://github.com/a-bobkov/spryker-url-rename-solution](https://github.com/a-bobkov/spryker-url-rename-solution), that can be used as a drop-in replacement of the standard `spryker/url` module.
+I have implemented the solution as an open-source fork repository [https://github.com/a-bobkov/spryker-url-rename-solution](https://github.com/a-bobkov/spryker-url-rename-solution), that can be used as a drop-in replacement of the standard `spryker/url` module.
 
 The solution consists of several new classes, located in a separate directory `src/Spryker/Zed/Url/Business/Processor` of the standard `spryker/url` module. The classes implement the same API of the module, but differently.
 
@@ -327,7 +327,7 @@ The solution consists of several new classes, located in a separate directory `s
 
 3․ [UrlRedirectProcessor](https://github.com/a-bobkov/spryker-url-rename-solution/blob/url-rename-solution/src/Spryker/Zed/Url/Business/Processor/UrlRedirectProcessor.php) – implements methods to be executed from the-above mentioned RedirectProcessor and UrlProcessor.  It saves data to the `spy_url_redirect` table.
 
-In case you want to view the solution yourself, you can look at the full source code by the link:
+In case you want to view the solution yourself, you can look at the full open-source code by the link:
 
 [https://github.com/spryker/url/compare/3.12.0...a-bobkov:spryker-url-rename-solution:url-rename-solution?diff=unified](https://github.com/spryker/url/compare/3.12.0...a-bobkov:spryker-url-rename-solution:url-rename-solution?diff=unified)
 
@@ -464,7 +464,7 @@ Exactly that! 🎉
 
 So the problem is solved and now the demo-shop is even better than before.
 
-## 🛠️  Possible future steps
+## 🔧️  Possible future steps
 
 For the purpose of this demonstration I have implemented the demonstrated solution with the following restrictions:
 
@@ -476,7 +476,7 @@ For the purpose of this demonstration I have implemented the demonstrated soluti
 
 I have left the above topics for future in case if someone really needs it.
 
-Looking from the point of view of development standards, this is not a complete solution, but a fully functional prototype. Nevertheless, it works better than the original `spryker/url` module, in my opinion 😄
+Looking from the point of view of development standards, this is not a complete solution, but rather a fully functional prototype. Nevertheless, it works way better than the original `spryker/url` module, in my opinion 😄
 
 So probably you may want to use it for your Spryker shop to avoid the demonstrated problem with URLs. In that case you can use two approaches:
 
@@ -484,15 +484,9 @@ So probably you may want to use it for your Spryker shop to avoid the demonstrat
 
 2․ Apply the solution in the directory `src/Pyz/Zed/Url` of your shop. In that case, please don't delete the copyright notice from the files 😉
 
-As stated in the [LICENSE](https://github.com/a-bobkov/spryker-url-rename-solution/blob/url-rename-solution/src/Spryker/Zed/Url/Business/Processor/LICENSE), you are allowed to use the solution in any environment, keeping the reference to the author.
+As stated in the [open-source LICENSE](https://github.com/a-bobkov/spryker-url-rename-solution/blob/url-rename-solution/src/Spryker/Zed/Url/Business/Processor/LICENSE), you are allowed to use the solution in any environment, keeping the reference to the author.
 
-## 🍻  Feedback
-
-To keep my motivation high, you may
-
-[<img src="https://a-bobkov.github.io/coffee.png" width="250" alt="Buy me a coffee"/>](https://www.paypal.com/donate/?hosted_button_id=MYA8VXRL7Q4ZE)
-
-Star ⭐ the [GitHub public repository Spryker-Url-Rename-Solution ](https://github.com/a-bobkov/spryker-url-rename-solution)
+## 🍻  Feedback options
 
 Your verbal opinion is appreciated via:
 
@@ -501,6 +495,12 @@ Your verbal opinion is appreciated via:
 🗃️️  [The Repository Discussions](https://github.com/a-bobkov/spryker-url-rename-solution/discussions),
 
 🗃️️  [The Repository Issues](https://github.com/a-bobkov/spryker-url-rename-solution/issues)
+
+To keep my motivation high, you may
+
+Star ⭐ the [GitHub public repository Spryker-Url-Rename-Solution ](https://github.com/a-bobkov/spryker-url-rename-solution)
+
+[<img src="https://a-bobkov.github.io/coffee.png" width="250" alt="Buy me a coffee"/>](https://www.paypal.com/donate/?hosted_button_id=MYA8VXRL7Q4ZE)
 
 ## 📒  Other investigations
 
