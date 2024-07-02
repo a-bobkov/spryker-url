@@ -6,6 +6,10 @@ A detailed analysis of the problem is presented.
 A fully-functional reusable open-source solution of the problem is demonstrated.  
 Possible future steps are considered.  
 
+UPDATE 02.07.2024  
+This work was officially recognized and appreciated by Spryker as a "great contribution":  
+[https://commercequest.space/discussion/28936/community-news-july-here-comes-the-sun-%EF%B8%8F#contribution-shoutout](https://commercequest.space/discussion/28936/community-news-july-here-comes-the-sun-%EF%B8%8F#contribution-shoutout)
+
 Andrey Bobkov, 2024,   🗃️️ [https://github.com/a-bobkov](https://github.com/a-bobkov),   🔗 [https://www.linkedin.com/in/andreybobkov/](https://www.linkedin.com/in/andreybobkov/)
 
 ---
@@ -16,7 +20,7 @@ Andrey Bobkov, 2024,   🗃️️ [https://github.com/a-bobkov](https://github
 🔍 [Problem analysis](#-problem-analysis)  
 📐 [Solution design](#-solution-design)  
 🚀 [Solution test launch](#-solution-test-launch)  
-🔧️ [Possible future steps](#-possible-future-steps)  
+🛠️️ [Possible future steps](#-possible-future-steps)  
 🍻 [Feedback options](#-feedback-options)  
 📒 [Other investigations](#-other-investigations)  
 
@@ -464,7 +468,7 @@ Exactly that! 🎉
 
 So the problem is solved and now the demo-shop is even better than before.
 
-## 🔧️  Possible future steps
+## 🛠️️  Possible future steps
 
 For the purpose of this demonstration I have implemented the demonstrated solution with the following restrictions:
 
